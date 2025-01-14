@@ -1,11 +1,21 @@
 const express = require("express");
 require("dotenv").config();
 const app = express();
-
-
-const dbConnection = require("./utils/dbConnection");
+const cors = require('cors')
 
 const PORT = process.env.PORT || 5000;
+
+const dbConnection = require("./utils/dbConnection");
+const userAuth = require('./routes/auth.route');
+
+app.use(express.urlencoded({extended:true}))
+
+app.use(cors({
+    origin:"*",
+    credentials: true
+}))
+
+app.use('/api/auth/google',userAuth)
 
 
 dbConnection()
