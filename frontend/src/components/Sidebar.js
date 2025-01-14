@@ -1,9 +1,13 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
+import GoogleLoginBtn from './UI/GoogleLoginBtn';
 
 const Sidebar = () => {
+    const user = true;
+
   return (
     <div className="w-64 bg-base-200 flex flex-col justify-between p-4">
+      
       <div>
         <h2 className="text-xl font-bold text-center mb-6">URL Shortener</h2>
         <ul className="space-y-4">
@@ -18,7 +22,7 @@ const Sidebar = () => {
       </div>
 
       <div className="space-y-4">
-        <div className="flex items-center space-x-4">
+        {!user &&   <><div className="flex items-center space-x-4">
           <img
             src="https://via.placeholder.com/40"
             alt="User"
@@ -26,7 +30,11 @@ const Sidebar = () => {
           />
           <span className="font-semibold">User Name</span>
         </div>
-        <button className="btn btn-error btn-outline w-full">Logout</button>
+      
+        
+        <button className="btn btn-error btn-outline w-full">Logout</button></>}
+      
+        {user && <GoogleLoginBtn />}
       </div>
     </div>
   );
