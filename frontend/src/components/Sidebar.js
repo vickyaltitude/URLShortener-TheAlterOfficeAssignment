@@ -1,9 +1,16 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleLoginBtn from './UI/GoogleLoginBtn';
+import { useQuery, useQueryClient } from '@tanstack/react-query';
 
 const Sidebar = () => {
-    const user = true;
+
+  const { data: authUser } = useQuery({ queryKey: ["authUser"] });
+   const queryClient = useQueryClient();
+  function handleLogout(){
+     localStorage.removeItem('authTokenJWT')
+     queryClient.invalidateQueries({queryKey:['authUser']})
+  }
 
   return (
     <div className="w-64 bg-base-200 flex flex-col justify-between p-4">
@@ -22,19 +29,19 @@ const Sidebar = () => {
       </div>
 
       <div className="space-y-4">
-        {!user &&   <><div className="flex items-center space-x-4">
+        {authUser &&   <><div className="flex items-center space-x-4">
           <img
-            src="https://via.placeholder.com/40"
+            src={authUser.picture}
             alt="User"
             className="w-10 h-10 rounded-full"
           />
-          <span className="font-semibold">User Name</span>
+          <span className="font-semibold">{authUser.userName}</span>
         </div>
       
         
-        <button className="btn btn-error btn-outline w-full">Logout</button></>}
+        <button className="btn btn-error btn-outline w-full" onClick={handleLogout}>Logout</button></>}
       
-        {user && <GoogleLoginBtn />}
+        {!authUser && <GoogleLoginBtn />}
       </div>
     </div>
   );

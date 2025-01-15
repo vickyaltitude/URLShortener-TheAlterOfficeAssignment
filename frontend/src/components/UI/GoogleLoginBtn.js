@@ -1,35 +1,61 @@
 import React from 'react'
-import { GoogleLogin } from 'react-google-login'
 
-
+import { useQueryClient} from '@tanstack/react-query';
+import { GoogleLogin } from '@react-oauth/google';
+import { BASE_URL } from '../../constant/url';
 
 
 const GoogleLoginBtn = () => {
 
+    
+    const queryClient = useQueryClient();
+    
 
-    const GOOGLE_CLIENT = '990619662195-k3gn3of3uaguc3rvelnuajp06hd4nk8s.apps.googleusercontent.com';
-  
-  
-    const onSuccess = (response) => {
-        console.log("Login Success:", response);
+    const onSuccess = async (response) => {
+
+       
+        const tokenId = response.credential;
+
+        try {
+          
+          const res = await fetch(`${BASE_URL}/api/auth/google/login`, {
+            method: 'POST',
+            headers:{
+                'Content-Type': 'application/json'
+            },
+            body: JSON.stringify({idToken:tokenId})
+          });
+    
+          const data = await res.json();
+          console.log(data)
+          if (!res.ok) {
+              throw new Error(data.error || "Something went wrong");
+          }
+          
+          localStorage.setItem('authTokenJWT',data.jwtToken)
+          queryClient.invalidateQueries({queryKey:['authUser']})
+    
+        } catch (err) {
+          console.error('Error verifying token with backend:', err);
+        }
+       
+    }
+    
+    const onError = (response) => {
+        console.error('google auth failed:', response);
        
     }
 
-    const onFailure = (response) => {
-        
-    }
+   
 
     return (
         <div className="flex justify-center items-center p-4">
-            <GoogleLogin
-                clientId={GOOGLE_CLIENT}
-                buttonText="One Click Login"
-                onSuccess={onSuccess}
-                onFailure={onFailure}
-                cookiePolicy="single_host_origin"
-               
-            />
-        </div>
+        <GoogleLogin
+            onSuccess={onSuccess}
+            onError={onError}
+            useOneTap 
+        />
+    </div>
     );
 }
 

@@ -1,12 +1,12 @@
 const {OAuth2Client} = require('google-auth-library');
 const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
 const User = require('../models/user.model');
-const generateToken = require('../utils/generateToken');
+const {generateToken} = require('../utils/generateToken');
 
 module.exports.loginUser = async (req,res) =>{
 
     const  {idToken} = req.body;
-
+   
     try{
 
         if(!idToken){
@@ -46,4 +46,10 @@ module.exports.loginUser = async (req,res) =>{
 
   
 
+}
+
+module.exports.userDetails = async (req,res) =>{
+  
+   res.status(200).json({userDetails: req.user})
+   
 }
