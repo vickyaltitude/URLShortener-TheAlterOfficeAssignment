@@ -67,6 +67,31 @@ const UrlData = new Schema({
             type : Number
         }
     }],
+    geoLocation:[
+        {
+            ip:{
+                type: String,
+            } ,
+            hostname:{
+                type: String
+            },
+            city:{
+                type: String
+            },
+            region:{
+                type: String
+            },
+            country:{
+                type: String
+            },postal:{
+                type: String
+            },
+            location:{
+                type: String
+            }
+         },
+
+        ]
   },
 },{timestamps: true});
 

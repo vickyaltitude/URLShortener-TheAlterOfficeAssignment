@@ -47,7 +47,7 @@ module.exports.urlShortener = async (req,res) =>{
    }
 
    if(existUrlCheck){
-     return res.status(200).json({shortUrl : existUrlCheck.shortUrl,createdAt: existUrlCheck.createdAt})
+     return res.status(401).json({error: 'Url already exists'})
    }
    
 
@@ -88,10 +88,7 @@ module.exports.redirectHandler = async (req,res) =>{
     try {
       const geoResponse = await axios.get(`https://ipinfo.io/${ip}/json?token=${process.env.IPINFO_TOKEN}`);
       const geoData = geoResponse.data;
-
-   
-  
-
+      console.log(geoData)
        let checkUrl = await UrlData.findOne({shortUrl: `${baseUrl}/${alias}`});
 
       if(!checkUrl){
@@ -174,7 +171,17 @@ module.exports.redirectHandler = async (req,res) =>{
             uniqueUserCheck ? checkUrl.analytics.deviceType[checkDevicePresent].uniqueUsers+= 1 : checkUrl.analytics.deviceType[checkDevicePresent].uniqueClicks+= 1
        }
 
-        
+       let geoLocationObj = {
+           ip: geoData.ip,
+           hostname: geoData.hostname,
+           city: geoData.city,
+           region: geoData.region,
+           country: geoData.country,
+           postal: geoData.postal,
+           location: geoData.loc
+       }
+
+        checkUrl.analytics.geoLocation.push(geoLocationObj)
  
          await checkUrl.save();
  
