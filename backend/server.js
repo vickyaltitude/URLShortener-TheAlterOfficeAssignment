@@ -19,7 +19,7 @@ app.use(cors({
 
 app.use('/api/auth/google',userAuth)
 
-app.use('/api',urlHandler)
+app.use('/api/shorten',urlHandler)
 
 
 dbConnection()
