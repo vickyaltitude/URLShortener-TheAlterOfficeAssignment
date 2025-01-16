@@ -28,9 +28,11 @@ const UrlData = new Schema({
   },
   totalClicks: {
     type: Number,
+    default: 0
   },
   uniqueUsers: {
     type: Number,
+    default: 0
   },
   clicksByDate: [
     {

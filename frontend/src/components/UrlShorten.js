@@ -122,7 +122,7 @@ const UrlShorten = () => {
       </div>
 
       <div className="flex items-center space-x-4">
-              <p className="text-lg text-white">{shortenedUrl}</p>
+      <p className="w-full h-12 text-lg border border-gray-700 bg-white text-black p-2 rounded">{shortenedUrl}</p>
               <button
                 onClick={handleCopy}
                 disabled= {shortenedUrl ? false : true}

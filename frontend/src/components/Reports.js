@@ -1,6 +1,7 @@
 import React from 'react'
 
 const Reports = () => {
+
   return (
     <div className="lg:w-3/5 w-full bg-gray-900 p-12 rounded-xl shadow-lg">
         <h1 className="text-4xl font-bold mb-8 text-green-400">Reports</h1>
@@ -19,7 +20,7 @@ const Reports = () => {
           </div>
 
          <h3>OR</h3>
-         
+
           <div className="mt-8">
           <label htmlFor="reportCategory" className="block text-lg font-medium mb-2">
             Select Category
@@ -29,9 +30,9 @@ const Reports = () => {
             className="w-full p-4 rounded-md border border-gray-700 bg-gray-800 text-white focus:outline-none focus:ring-2 focus:ring-green-500"
           >
             <option value="business">Business</option>
-            <option value="education">Education</option>
-            <option value="technology">Technology</option>
-            <option value="entertainment">Entertainment</option>
+            <option value="personal">Personal</option>
+            <option value="campaign">Campaign</option>
+            <option value="others">Others</option>
           </select>
         </div>
 

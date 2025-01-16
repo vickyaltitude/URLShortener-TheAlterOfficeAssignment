@@ -7,7 +7,7 @@ module.exports.authProtectRoute = async (req, res, next) => {
   
     try{
         const token = req.headers['authorization'];
-     console.log(token)
+
         if(token === 'null'){
         
            return res.status(400).json({error:"Please login"})
