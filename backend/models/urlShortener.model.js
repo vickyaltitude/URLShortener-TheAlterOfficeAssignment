@@ -6,6 +6,12 @@ const UrlData = new Schema({
     type: String,
     required: true,
   },
+  ipAdd:[
+    {
+        type: String,
+        required: true
+    }
+  ],
   owner:{
      type: Schema.Types.ObjectId,
      required: true,

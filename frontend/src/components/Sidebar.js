@@ -19,13 +19,11 @@ const Sidebar = () => {
       <div>
         <h2 className="text-xl font-bold text-center mb-6">URL Shortener</h2>
         <ul className="space-y-4">
-          <Link    className="flex items-center px-4 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors"
+          <Link to='/'   className="flex items-center px-4 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors"
           >
               Home 
           </Link>
-          <Link className="flex items-center px-4 py-2 text-lg font-medium text-gray-300 hover:text-white hover:bg-gray-700 rounded-md transition-colors">
-              URL Reports
-          </Link>
+      
         </ul>
       </div>
 

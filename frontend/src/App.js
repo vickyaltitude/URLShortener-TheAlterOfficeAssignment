@@ -3,6 +3,8 @@ import Sidebar from "./components/Sidebar";
 import LoadingSpinner from "./components/UI/LoadingSpinner";
 import { useQuery } from "@tanstack/react-query";
 import { BASE_URL } from "./constant/url";
+import { Route, Routes } from "react-router-dom";
+import { Toaster } from "react-hot-toast";
 
 
 
@@ -52,10 +54,15 @@ function App() {
 
 
   return (
-    <div className='flex h-screen'>
-          <Sidebar />
-          <MainContent />
+    <div className="flex h-screen">
+      <Sidebar />
+    <div className="flex-1">
+      <Routes>
+        <Route path="/" element={<MainContent />} />
+      </Routes>
     </div>
+    <Toaster />
+  </div>
   );
 }
 

@@ -1,13 +1,21 @@
 const express = require("express");
 require("dotenv").config();
+
+const useragent = require('express-useragent');
 const app = express();
+
 const cors = require('cors')
 
 const PORT = process.env.PORT || 5000;
 
+app.use(useragent.express());
+
 const dbConnection = require("./utils/dbConnection");
 const userAuth = require('./routes/auth.route');
 const urlHandler = require('./routes/urlHandler.route');
+
+
+
 
 app.use(express.urlencoded({extended:true}))
 app.use(express.json());
