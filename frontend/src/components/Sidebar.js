@@ -2,10 +2,11 @@ import React from 'react';
 import { Link } from 'react-router-dom';
 import GoogleLoginBtn from './UI/GoogleLoginBtn';
 import { useQuery, useQueryClient } from '@tanstack/react-query';
+import LoadingSpinner from './UI/LoadingSpinner';
 
 const Sidebar = () => {
 
-  const { data: authUser } = useQuery({ queryKey: ["authUser"] });
+  const { data: authUser,isLoading,isError } = useQuery({ queryKey: ["authUser"] });
    const queryClient = useQueryClient();
   function handleLogout(){
      localStorage.removeItem('authTokenJWT')
@@ -29,7 +30,8 @@ const Sidebar = () => {
       </div>
 
       <div className="space-y-4">
-        {authUser &&   <><div className="flex items-center space-x-4">
+        {isLoading && <LoadingSpinner /> }
+        {authUser && !isError && !isLoading && <><div className="flex items-center space-x-4">
           <img
             src={authUser.picture}
             alt="User"
@@ -41,7 +43,7 @@ const Sidebar = () => {
         
         <button className="btn btn-error btn-outline w-full" onClick={handleLogout}>Logout</button></>}
       
-        {!authUser && <GoogleLoginBtn />}
+        {!authUser && !isLoading && <GoogleLoginBtn />}
       </div>
     </div>
   );

@@ -46,16 +46,11 @@ function App() {
 
         }
 
-      },
-      retry: false, 
+      }, 
       refetchOnWindowFocus: false, 
     })
 
-  if(isLoading){
-    return <div className='flex jusity-center items-center h-screen'>
-         <LoadingSpinner size='lg' />
-    </div>
-  }
+
   return (
     <div className='flex h-screen'>
           <Sidebar />
