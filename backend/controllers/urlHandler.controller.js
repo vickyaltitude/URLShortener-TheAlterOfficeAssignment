@@ -83,12 +83,12 @@ module.exports.redirectHandler = async (req,res) =>{
   
     const uaDetails = useragent.parse(uAgent);
   
-    const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
+    const ip = (req.headers['x-forwarded-for'] || req.connection.remoteAddress || '').split(',')[0].trim();
   
     try {
       const geoResponse = await axios.get(`https://ipinfo.io/${ip}/json?token=${process.env.IPINFO_TOKEN}`);
       const geoData = geoResponse.data;
-      console.log(geoData)
+   
        let checkUrl = await UrlData.findOne({shortUrl: `${baseUrl}/${alias}`});
 
       if(!checkUrl){
