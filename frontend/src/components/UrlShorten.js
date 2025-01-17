@@ -26,7 +26,7 @@ const UrlShorten = () => {
               body: JSON.stringify({longUrl,customAlias,category})
             });
             const data = await res.json();
-           console.log(data)
+          
             if (!res.ok) {
                 toast.error(data.error)
               throw new Error(data || "Something went wrong");
@@ -34,7 +34,7 @@ const UrlShorten = () => {
             }
             return data;
           } catch (error) {
-            console.log(error)
+          
             throw new Error(error);
           }
         },
@@ -54,7 +54,7 @@ const UrlShorten = () => {
         const longUrl = longUrlRef.current.value;
         const customAlias = customAliasRef.current.value;
         const category = categoryRef.current.value;
-        console.log(longUrl,customAlias,category)
+      
         shortUrl({longUrl,customAlias,category})
 
       }
@@ -66,7 +66,7 @@ const UrlShorten = () => {
           toast.success('URL copied successfully')
         })
         .catch((err) => {
-            console.log(err)
+      
             toast.error('Failed to copy URL')
       
         });

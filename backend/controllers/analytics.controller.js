@@ -10,7 +10,7 @@ module.exports.getUrlData = async (req, res) => {
     if (!currentUser) {
       return res.status(401).json({ error: "User not logged in" });
     }
-    console.log(`${baseUrl}/${alias}`);
+  
     const getUrlData = await UrlData.findOne({
       shortUrl: `${baseUrl}/${alias}`,
     });
