@@ -87,7 +87,7 @@ Setup
 Clone the repository:
 
 
-git clone https://github.com/yourusername/url-shortener.git
+git clone https://github.com/vickyaltitude/URLShortener-TheAlterOfficeAssignment.git
 
 cd url-shortener
 
