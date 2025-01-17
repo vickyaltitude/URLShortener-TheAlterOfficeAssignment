@@ -12,7 +12,7 @@ const Sidebar = () => {
      localStorage.removeItem('authTokenJWT')
      queryClient.invalidateQueries({queryKey:['authUser']})
   }
-
+  console.log(authUser)
   return (
     <div className="w-64 bg-base-200 flex flex-col justify-between p-4">
       
