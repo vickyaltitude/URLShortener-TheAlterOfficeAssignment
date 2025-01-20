@@ -1,1 +1,1 @@
-export const BASE_URL = 'https://urlshortener-thealterofficeassignment.onrender.com'
+export const BASE_URL ='http://foralteroffice.zapto.org'

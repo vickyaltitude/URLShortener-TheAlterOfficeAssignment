@@ -10,7 +10,7 @@ const Reports = () => {
 
   async function handleReportSubmit(e){
     e.preventDefault();
-
+        
     if(!url && !category) return
 
      try{
@@ -57,8 +57,11 @@ const Reports = () => {
       
   }
 
-  async function handleOverAllReports(){
+  async function handleOverAllReports()
+	{
+	
        try{
+	     
 
             let getOverAllData = await fetch(`${BASE_URL}/api/analytics/overall`,{
               method: 'GET',

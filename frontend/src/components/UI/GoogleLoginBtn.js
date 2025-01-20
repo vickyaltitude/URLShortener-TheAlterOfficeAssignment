@@ -17,7 +17,7 @@ const GoogleLoginBtn = () => {
         const tokenId = response.credential;
 
         try {
-          
+         
           const res = await fetch(`${BASE_URL}/api/auth/google/login`, {
             method: 'POST',
             headers:{
@@ -27,7 +27,7 @@ const GoogleLoginBtn = () => {
           });
     
           const data = await res.json();
-      
+         
           if (!res.ok) {
               throw new Error(data.error || "Something went wrong");
           }

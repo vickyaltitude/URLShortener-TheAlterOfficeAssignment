@@ -6,7 +6,7 @@ const {generateToken} = require('../utils/generateToken');
 module.exports.loginUser = async (req,res) =>{
 
     const  {idToken} = req.body;
-   
+    console.log(idToken)
     try{
 
         if(!idToken){
